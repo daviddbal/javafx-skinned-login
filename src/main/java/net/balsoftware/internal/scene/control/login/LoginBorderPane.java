@@ -12,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 import javafx.util.Pair;
-import net.balsoftware.FXMLUtilities;
 
 public class LoginBorderPane extends BorderPane
 {
@@ -30,5 +29,20 @@ public class LoginBorderPane extends BorderPane
         {
             loginCallback.call(new Pair<>(usernameTextField.getText(), passwordField.getText()));
         });
+    }
+    
+        /** Convenience method to load FXML files */
+    protected static void loadFxml(URL fxmlFile, Object rootController, ResourceBundle bundle)
+    {
+        FXMLLoader loader = new FXMLLoader(fxmlFile);
+        loader.setController(rootController);
+        loader.setRoot(rootController);
+        if (bundle != null) loader.setResources(bundle);
+        try {
+            loader.load();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }
